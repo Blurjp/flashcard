@@ -1,0 +1,93 @@
+/*
+  Localizable.strings
+  FlashcardMVP - Chinese Simplified (zh-Hans)
+*/
+
+/* Navigation & General */
+"Decks" = "卡组";
+"Settings" = "设置";
+"Done" = "完成";
+"Cancel" = "取消";
+"Create" = "创建";
+"Save" = "保存";
+"Close" = "关闭";
+"Skip" = "跳过";
+"OK" = "确定";
+
+/* Deck List */
+"No Decks Yet" = "还没有卡组";
+"Create your first deck to start learning" = "创建您的第一个卡组开始学习";
+"Create Deck" = "创建卡组";
+"New Deck" = "新建卡组";
+"Deck Name" = "卡组名称";
+"Give your deck a memorable name" = "为您的卡组起一个容易记住的名字";
+"Due today" = "今天到期";
+"Sample Deck" = "示例卡组";
+
+/* Deck Detail */
+"No Cards Yet" = "还没有卡片";
+"Add your first card to start reviewing" = "添加您的第一张卡片开始复习";
+"Add Card" = "添加卡片";
+"Search cards" = "搜索卡片";
+"Start Review" = "开始复习";
+"Has image" = "有图片";
+"Due yesterday" = "昨天到期";
+"Overdue" = "已过期";
+"Due tomorrow" = "明天到期";
+
+/* Card Editor */
+"New Card" = "新建卡片";
+"Edit Card" = "编辑卡片";
+"Front Side" = "正面";
+"Front" = "正面";
+"What you'll see first (question/prompt)" = "您首先看到的内容（问题/提示）";
+"Back Side" = "背面";
+"Back" = "背面";
+"The answer or translation" = "答案或翻译";
+"Image (Optional)" = "图片（可选）";
+"Add Image" = "添加图片";
+"Remove Image" = "移除图片";
+"Add a visual aid to help memorization" = "添加视觉辅助以帮助记忆";
+
+/* Review Session */
+"Review" = "复习";
+"Question" = "问题";
+"Answer" = "答案";
+"Show Answer" = "显示答案";
+"How did you do?" = "您记得如何？";
+"Again" = "不会";
+"Hard" = "困难";
+"Good" = "良好";
+"Easy" = "简单";
+"Rate your recall" = "评价您的记忆";
+
+/* Session Complete */
+"Session Complete!" = "复习完成！";
+"Cards Reviewed" = "已复习卡片";
+"Success Rate" = "成功率";
+"Good or Easy" = "良好或简单";
+"Review Again" = "再次复习";
+"All Caught Up!" = "全部完成！";
+"No cards are due for review right now" = "现在没有到期的卡片需要复习";
+
+/* Onboarding */
+"Create Decks" = "创建卡组";
+"Organize your flashcards into decks by topic or subject" = "按主题或科目组织您的闪卡";
+"Add Cards" = "添加卡片";
+"Create flashcards with questions and answers, including images" = "创建包含问题、答案和图片的闪卡";
+"Review Daily" = "每日复习";
+"Smart spaced repetition helps you remember what you learn" = "智能间隔重复帮助您记住所学内容";
+"Get Started" = "开始使用";
+
+/* Settings */
+"Sync Status" = "同步状态";
+"iCloud Sync" = "iCloud 同步";
+"Your decks and cards sync automatically across your devices via iCloud" = "您的卡组和卡片通过 iCloud 自动在设备间同步";
+"Data" = "数据";
+"Export All Decks" = "导出所有卡组";
+"Export your decks as JSON for backup or sharing" = "将您的卡组导出为 JSON 以备份或分享";
+"Export Complete" = "导出完成";
+"Your decks have been exported successfully" = "您的卡组已成功导出";
+"About" = "关于";
+"Version" = "版本";
+"Build" = "构建";

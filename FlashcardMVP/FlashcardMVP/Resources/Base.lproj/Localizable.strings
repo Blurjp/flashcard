@@ -1,0 +1,93 @@
+/*
+  Localizable.strings
+  FlashcardMVP - Base (English)
+*/
+
+/* Navigation & General */
+"Decks" = "Decks";
+"Settings" = "Settings";
+"Done" = "Done";
+"Cancel" = "Cancel";
+"Create" = "Create";
+"Save" = "Save";
+"Close" = "Close";
+"Skip" = "Skip";
+"OK" = "OK";
+
+/* Deck List */
+"No Decks Yet" = "No Decks Yet";
+"Create your first deck to start learning" = "Create your first deck to start learning";
+"Create Deck" = "Create Deck";
+"New Deck" = "New Deck";
+"Deck Name" = "Deck Name";
+"Give your deck a memorable name" = "Give your deck a memorable name";
+"Due today" = "Due today";
+"Sample Deck" = "Sample Deck";
+
+/* Deck Detail */
+"No Cards Yet" = "No Cards Yet";
+"Add your first card to start reviewing" = "Add your first card to start reviewing";
+"Add Card" = "Add Card";
+"Search cards" = "Search cards";
+"Start Review" = "Start Review";
+"Has image" = "Has image";
+"Due yesterday" = "Due yesterday";
+"Overdue" = "Overdue";
+"Due tomorrow" = "Due tomorrow";
+
+/* Card Editor */
+"New Card" = "New Card";
+"Edit Card" = "Edit Card";
+"Front Side" = "Front Side";
+"Front" = "Front";
+"What you'll see first (question/prompt)" = "What you'll see first (question/prompt)";
+"Back Side" = "Back Side";
+"Back" = "Back";
+"The answer or translation" = "The answer or translation";
+"Image (Optional)" = "Image (Optional)";
+"Add Image" = "Add Image";
+"Remove Image" = "Remove Image";
+"Add a visual aid to help memorization" = "Add a visual aid to help memorization";
+
+/* Review Session */
+"Review" = "Review";
+"Question" = "Question";
+"Answer" = "Answer";
+"Show Answer" = "Show Answer";
+"How did you do?" = "How did you do?";
+"Again" = "Again";
+"Hard" = "Hard";
+"Good" = "Good";
+"Easy" = "Easy";
+"Rate your recall" = "Rate your recall";
+
+/* Session Complete */
+"Session Complete!" = "Session Complete!";
+"Cards Reviewed" = "Cards Reviewed";
+"Success Rate" = "Success Rate";
+"Good or Easy" = "Good or Easy";
+"Review Again" = "Review Again";
+"All Caught Up!" = "All Caught Up!";
+"No cards are due for review right now" = "No cards are due for review right now";
+
+/* Onboarding */
+"Create Decks" = "Create Decks";
+"Organize your flashcards into decks by topic or subject" = "Organize your flashcards into decks by topic or subject";
+"Add Cards" = "Add Cards";
+"Create flashcards with questions and answers, including images" = "Create flashcards with questions and answers, including images";
+"Review Daily" = "Review Daily";
+"Smart spaced repetition helps you remember what you learn" = "Smart spaced repetition helps you remember what you learn";
+"Get Started" = "Get Started";
+
+/* Settings */
+"Sync Status" = "Sync Status";
+"iCloud Sync" = "iCloud Sync";
+"Your decks and cards sync automatically across your devices via iCloud" = "Your decks and cards sync automatically across your devices via iCloud";
+"Data" = "Data";
+"Export All Decks" = "Export All Decks";
+"Export your decks as JSON for backup or sharing" = "Export your decks as JSON for backup or sharing";
+"Export Complete" = "Export Complete";
+"Your decks have been exported successfully" = "Your decks have been exported successfully";
+"About" = "About";
+"Version" = "Version";
+"Build" = "Build";
