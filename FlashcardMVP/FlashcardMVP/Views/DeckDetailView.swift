@@ -15,6 +15,7 @@ struct DeckDetailView: View {
 
     @State private var showingAddCard = false
     @State private var showingReviewSession = false
+    @State private var showingCardGenerator = false
     @State private var editingCard: Card?
 
     init(deck: Deck, context: NSManagedObjectContext = PersistenceController.shared.viewContext) {
@@ -35,8 +36,18 @@ struct DeckDetailView: View {
         .searchable(text: $viewModel.searchText, prompt: NSLocalizedString("Search cards", comment: ""))
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button {
-                    showingAddCard = true
+                Menu {
+                    Button {
+                        showingAddCard = true
+                    } label: {
+                        Label(NSLocalizedString("Add Card Manually", comment: ""), systemImage: "square.and.pencil")
+                    }
+
+                    Button {
+                        showingCardGenerator = true
+                    } label: {
+                        Label(NSLocalizedString("Generate from Photo", comment: ""), systemImage: "camera.fill")
+                    }
                 } label: {
                     Image(systemName: "plus")
                 }
@@ -50,6 +61,9 @@ struct DeckDetailView: View {
         }
         .sheet(isPresented: $showingReviewSession) {
             ReviewSessionView(deck: deck)
+        }
+        .sheet(isPresented: $showingCardGenerator) {
+            CardGeneratorView(deck: deck, context: viewContext)
         }
         .overlay(alignment: .bottom) {
             if viewModel.dueCardsCount > 0 {
@@ -96,13 +110,23 @@ struct DeckDetailView: View {
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
 
-            Button {
-                showingAddCard = true
-            } label: {
-                Label(NSLocalizedString("Add Card", comment: ""), systemImage: "plus.circle.fill")
-                    .font(.headline)
+            VStack(spacing: 12) {
+                Button {
+                    showingAddCard = true
+                } label: {
+                    Label(NSLocalizedString("Add Card Manually", comment: ""), systemImage: "plus.circle.fill")
+                        .font(.headline)
+                }
+                .buttonStyle(.borderedProminent)
+
+                Button {
+                    showingCardGenerator = true
+                } label: {
+                    Label(NSLocalizedString("Generate from Photo", comment: ""), systemImage: "camera.fill")
+                        .font(.headline)
+                }
+                .buttonStyle(.bordered)
             }
-            .buttonStyle(.borderedProminent)
             .padding(.top)
         }
         .padding()

@@ -15,6 +15,7 @@ struct SettingsView: View {
     @State private var showingExportSheet = false
     @State private var exportedDataURL: URL?
     @State private var showingExportSuccess = false
+    @State private var apiKey: String = AIServiceConfiguration.shared.apiKey ?? ""
 
     var body: some View {
         NavigationStack {
@@ -30,6 +31,19 @@ struct SettingsView: View {
                     Text(NSLocalizedString("Sync Status", comment: ""))
                 } footer: {
                     Text(NSLocalizedString("Your decks and cards sync automatically across your devices via iCloud", comment: ""))
+                }
+
+                Section {
+                    TextField(NSLocalizedString("API Key", comment: ""), text: $apiKey)
+                        .textContentType(.password)
+                        .autocapitalization(.none)
+                        .onChange(of: apiKey) { _, newValue in
+                            AIServiceConfiguration.shared.apiKey = newValue.isEmpty ? nil : newValue
+                        }
+                } header: {
+                    Text(NSLocalizedString("AI Configuration", comment: ""))
+                } footer: {
+                    Text(NSLocalizedString("Enter your OpenAI API key to enable AI-powered card generation", comment: ""))
                 }
 
                 Section {

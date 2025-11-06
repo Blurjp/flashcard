@@ -13,10 +13,11 @@ A polished iOS flashcard application built with SwiftUI, featuring spaced repeti
 
 - **Deck Management**: Create, edit, and organize flashcard decks
 - **Card Creation**: Add flashcards with front/back text and optional images
+- **AI Card Generation** ✨ **NEW**: Take photos of study materials and automatically generate flashcards with AI
 - **Spaced Repetition**: SM-2 inspired algorithm for optimal learning
 - **Review Sessions**: Interactive study sessions with 4-level rating system
 - **iCloud Sync**: Automatic sync across all your devices via CloudKit
-- **Offline-First**: Full functionality without internet connection
+- **Offline-First**: Full functionality without internet connection (OCR works offline)
 
 ### User Experience
 
@@ -50,16 +51,22 @@ FlashcardMVP/
 │   │   └── ReviewLog.swift            # ReviewLog entity extension
 │   ├── SRS/
 │   │   └── Scheduler.swift            # Spaced repetition algorithm
+│   ├── Services/
+│   │   ├── TextRecognitionService.swift # OCR with Vision framework
+│   │   └── AIService.swift            # AI flashcard generation
 │   ├── ViewModels/
 │   │   ├── DeckListViewModel.swift    # Deck list logic
 │   │   ├── DeckDetailViewModel.swift  # Deck detail logic
 │   │   ├── CardEditorViewModel.swift  # Card editing logic
-│   │   └── ReviewSessionViewModel.swift # Review session logic
+│   │   ├── ReviewSessionViewModel.swift # Review session logic
+│   │   └── CardGeneratorViewModel.swift # AI generation logic
 │   ├── Views/
 │   │   ├── DeckListView.swift         # Deck list UI
 │   │   ├── DeckDetailView.swift       # Deck detail UI
 │   │   ├── CardEditorView.swift       # Card editor UI
 │   │   ├── ReviewSessionView.swift    # Review session UI
+│   │   ├── CardGeneratorView.swift    # AI card generation UI
+│   │   ├── CameraView.swift           # Camera picker
 │   │   ├── OnboardingView.swift       # Onboarding UI
 │   │   └── SettingsView.swift         # Settings UI
 │   ├── Resources/
@@ -75,6 +82,7 @@ FlashcardMVP/
 │   ├── SchedulerTests.swift           # SRS algorithm tests
 │   └── PersistenceTests.swift         # Core Data tests
 ├── CoreDataModel.md                    # Core Data setup guide
+├── AI_CARD_GENERATION.md              # AI generation feature guide
 └── README.md                           # This file
 ```
 
@@ -212,11 +220,24 @@ See `Scheduler.swift` for implementation details.
 
 ### Adding Cards
 
+#### Manual Creation
 1. Select a deck from the list
 2. Tap the "+" button in the top right
-3. Enter front and back text
-4. Optionally add an image
-5. Tap "Save"
+3. Select "Add Card Manually"
+4. Enter front and back text
+5. Optionally add an image
+6. Tap "Save"
+
+#### AI Generation from Photos ✨ NEW
+1. Select a deck from the list
+2. Tap the "+" button in the top right
+3. Select "Generate from Photo"
+4. Take a photo or choose from library
+5. Wait for AI to generate flashcards (10-30 seconds)
+6. Review and edit generated cards
+7. Tap "Save Selected" to add them to your deck
+
+**📖 For detailed instructions, see [AI_CARD_GENERATION.md](AI_CARD_GENERATION.md)**
 
 ### Reviewing Cards
 
