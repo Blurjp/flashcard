@@ -16,10 +16,36 @@ struct SettingsView: View {
     @State private var exportedDataURL: URL?
     @State private var showingExportSuccess = false
     @State private var apiKey: String = AIServiceConfiguration.shared.apiKey ?? ""
+    @AppStorage(AppTheme.storageKey) private var themeRaw = AppTheme.standard.rawValue
+    @State private var showingStarterDeckAdded = false
 
     var body: some View {
         NavigationStack {
             List {
+                Section {
+                    Picker(selection: $themeRaw) {
+                        ForEach(AppTheme.allCases) { theme in
+                            Label(theme.displayName, systemImage: theme.iconName)
+                                .tag(theme.rawValue)
+                        }
+                    } label: {
+                        Label(NSLocalizedString("Theme", comment: ""), systemImage: "paintbrush")
+                    }
+
+                    if themeRaw == AppTheme.scienceOlympiad.rawValue {
+                        Button {
+                            DeckListViewModel(context: viewContext).createScienceOlympiadDeck()
+                            showingStarterDeckAdded = true
+                        } label: {
+                            Label(NSLocalizedString("Add Science Olympiad Starter Deck", comment: ""), systemImage: "plus.rectangle.on.folder")
+                        }
+                    }
+                } header: {
+                    Text(NSLocalizedString("Appearance", comment: ""))
+                } footer: {
+                    Text(NSLocalizedString("Choose a theme for the app's accent color and starter content", comment: ""))
+                }
+
                 Section {
                     HStack {
                         Label(NSLocalizedString("iCloud Sync", comment: ""), systemImage: "icloud")
@@ -89,6 +115,11 @@ struct SettingsView: View {
                 if let url = exportedDataURL {
                     ShareSheet(activityItems: [url])
                 }
+            }
+            .alert(NSLocalizedString("Starter Deck Added", comment: ""), isPresented: $showingStarterDeckAdded) {
+                Button(NSLocalizedString("OK", comment: ""), role: .cancel) { }
+            } message: {
+                Text(NSLocalizedString("A Science Olympiad deck has been added to your decks", comment: ""))
             }
             .alert(NSLocalizedString("Export Complete", comment: ""), isPresented: $showingExportSuccess) {
                 Button(NSLocalizedString("OK", comment: ""), role: .cancel) { }

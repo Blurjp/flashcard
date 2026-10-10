@@ -130,3 +130,13 @@
 "Use Demo Mode" = "Use Demo Mode";
 "Edit" = "Edit";
 "Delete" = "Delete";
+
+/* Themes */
+"Appearance" = "Appearance";
+"Theme" = "Theme";
+"Standard" = "Standard";
+"Science Olympiad" = "Science Olympiad";
+"Add Science Olympiad Starter Deck" = "Add Science Olympiad Starter Deck";
+"Choose a theme for the app's accent color and starter content" = "Choose a theme for the app's accent color and starter content";
+"Starter Deck Added" = "Starter Deck Added";
+"A Science Olympiad deck has been added to your decks" = "A Science Olympiad deck has been added to your decks";

@@ -130,3 +130,13 @@
 "Use Demo Mode" = "使用演示模式";
 "Edit" = "编辑";
 "Delete" = "删除";
+
+/* Themes */
+"Appearance" = "外观";
+"Theme" = "主题";
+"Standard" = "标准";
+"Science Olympiad" = "科学奥林匹克";
+"Add Science Olympiad Starter Deck" = "添加科学奥林匹克入门卡组";
+"Choose a theme for the app's accent color and starter content" = "选择应用的强调色和入门内容主题";
+"Starter Deck Added" = "入门卡组已添加";
+"A Science Olympiad deck has been added to your decks" = "科学奥林匹克卡组已添加到您的卡组中";

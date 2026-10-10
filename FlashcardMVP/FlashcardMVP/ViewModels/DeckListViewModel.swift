@@ -54,6 +54,16 @@ class DeckListViewModel: ObservableObject {
         saveContext()
     }
 
+    func createScienceOlympiadDeck() {
+        let deck = Deck(context: context, name: NSLocalizedString("Science Olympiad", comment: ""))
+
+        for (front, back) in AppTheme.scienceOlympiadCards {
+            _ = Card(context: context, front: front, back: back, deck: deck)
+        }
+
+        saveContext()
+    }
+
     // MARK: - Private Helpers
 
     private func saveContext() {
