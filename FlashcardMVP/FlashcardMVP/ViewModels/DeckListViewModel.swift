@@ -71,6 +71,44 @@ class DeckListViewModel: ObservableObject {
         saveContext()
     }
 
+    #if DEBUG
+    /// Seeds a small demo dataset for App Store capture runs (-SeedDemoData).
+    func seedDemoDataIfNeeded() {
+        let decks = (try? context.fetch(Deck.fetchRequest())) ?? []
+        guard decks.isEmpty else { return }
+
+        let demoDecks: [(String, [(String, String)])] = [
+            ("Science Olympiad", [
+                ("What is the SI unit of force?", "Newton (N)"),
+                ("What organelle produces most of a cell's ATP?", "Mitochondrion"),
+                ("What is Avogadro's number?", "6.022 × 10²³ per mole")
+            ]),
+            ("Math Olympiad", [
+                ("State the quadratic formula.", "x = (−b ± √(b² − 4ac)) / 2a"),
+                ("State the Pythagorean theorem.", "a² + b² = c²")
+            ]),
+            ("Languages", [
+                ("Chinese (HSK 1): 你好", "Hello (nǐ hǎo)"),
+                ("Japanese (JLPT N5): ありがとう", "Thank you (arigatō)"),
+                ("Spanish: 'Where is the library?'", "¿Dónde está la biblioteca?")
+            ]),
+            ("Coding", [
+                ("What is the time complexity of binary search?", "O(log n) on a sorted array"),
+                ("Which design pattern ensures one instance?", "Singleton")
+            ])
+        ]
+
+        for (name, cards) in demoDecks {
+            let deck = Deck(context: context, name: name)
+            for (front, back) in cards {
+                _ = Card(context: context, front: front, back: back, deck: deck)
+            }
+        }
+
+        saveContext()
+    }
+    #endif
+
     // MARK: - Private Helpers
 
     private func saveContext() {

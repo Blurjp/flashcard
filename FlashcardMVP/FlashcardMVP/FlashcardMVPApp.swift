@@ -21,6 +21,12 @@ struct FlashcardMVPApp: App {
         WindowGroup {
             themedRoot
                 .onAppear {
+                    #if DEBUG
+                    if ProcessInfo.processInfo.arguments.contains("-SeedDemoData") {
+                        UserDefaults.standard.set(true, forKey: "hasCompletedOnboarding")
+                        DeckListViewModel(context: persistenceController.viewContext).seedDemoDataIfNeeded()
+                    }
+                    #endif
                     if !hasCompletedOnboarding {
                         showingOnboarding = true
                     }

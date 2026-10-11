@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>Flashcard</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -18,8 +20,12 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>NSCameraUsageDescription</key>
-	<string>Scan study material</string>
+	<string>Flashcard uses the camera to photograph study material and turn it into flashcards.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Flashcard uses your photo library to import study material images.</string>
 	<key>UILaunchScreen</key>
 	<dict/>
 </dict>

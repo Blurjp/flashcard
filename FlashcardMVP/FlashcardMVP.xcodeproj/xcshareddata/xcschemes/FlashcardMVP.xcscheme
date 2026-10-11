@@ -35,6 +35,20 @@
                ReferencedContainer = "container:FlashcardMVP.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "9CE142AA1039B97CFB3EB802"
+               BuildableName = "FlashcardMVPUITests.xctest"
+               BlueprintName = "FlashcardMVPUITests"
+               ReferencedContainer = "container:FlashcardMVP.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
