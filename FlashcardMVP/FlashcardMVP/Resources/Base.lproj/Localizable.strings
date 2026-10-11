@@ -132,11 +132,34 @@
 "Delete" = "Delete";
 
 /* Themes */
-"Appearance" = "Appearance";
+"Themes" = "Themes";
 "Theme" = "Theme";
+"Appearance" = "Appearance";
+"Academic Competitions" = "Academic Competitions";
+"Test Prep" = "Test Prep";
+"Subjects" = "Subjects";
 "Standard" = "Standard";
 "Science Olympiad" = "Science Olympiad";
-"Add Science Olympiad Starter Deck" = "Add Science Olympiad Starter Deck";
+"Math Olympiad" = "Math Olympiad";
+"Spelling Bee" = "Spelling Bee";
+"Geography Bee" = "Geography Bee";
+"Quiz Bowl" = "Quiz Bowl";
+"Debate" = "Debate";
+"SAT / ACT" = "SAT / ACT";
+"AP Exams" = "AP Exams";
+"GRE / TOEFL" = "GRE / TOEFL";
+"Medical / MCAT" = "Medical / MCAT";
+"Languages" = "Languages";
+"Coding" = "Coding";
+"History" = "History";
+"Music Theory" = "Music Theory";
+"Midnight" = "Midnight";
+"Forest" = "Forest";
+"Ocean" = "Ocean";
+"Sunset" = "Sunset";
+"Playful" = "Playful";
+"High Contrast" = "High Contrast";
+"Add %@ Starter Deck" = "Add %@ Starter Deck";
 "Choose a theme for the app's accent color and starter content" = "Choose a theme for the app's accent color and starter content";
 "Starter Deck Added" = "Starter Deck Added";
-"A Science Olympiad deck has been added to your decks" = "A Science Olympiad deck has been added to your decks";
+"The %@ deck has been added to your decks" = "The %@ deck has been added to your decks";

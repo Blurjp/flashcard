@@ -11,6 +11,17 @@ import Foundation
 final class PersistenceController {
     static let shared = PersistenceController()
 
+    /// Cached so every controller instance shares one NSManagedObjectModel.
+    /// Loading the model per-instance duplicates entity descriptions and
+    /// breaks fetch requests when several stacks exist in one process (e.g. tests).
+    private static let model: NSManagedObjectModel = {
+        guard let modelURL = Bundle.main.url(forResource: "FlashcardMVP", withExtension: "momd"),
+              let model = NSManagedObjectModel(contentsOf: modelURL) else {
+            fatalError("Failed to load FlashcardMVP Core Data model")
+        }
+        return model
+    }()
+
     let container: NSPersistentCloudKitContainer
 
     var viewContext: NSManagedObjectContext {
@@ -20,7 +31,7 @@ final class PersistenceController {
     // MARK: - Initialization
 
     init(inMemory: Bool = false) {
-        container = NSPersistentCloudKitContainer(name: "FlashcardMVP")
+        container = NSPersistentCloudKitContainer(name: "FlashcardMVP", managedObjectModel: Self.model)
 
         if inMemory {
             container.persistentStoreDescriptions.first?.url = URL(fileURLWithPath: "/dev/null")

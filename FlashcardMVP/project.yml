@@ -1,0 +1,38 @@
+name: FlashcardMVP
+options:
+  bundleIdPrefix: com.flashcardmvp
+  deploymentTarget:
+    iOS: "17.0"
+  createIntermediateGroups: true
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    CODE_SIGNING_ALLOWED: "NO"
+    CODE_SIGN_IDENTITY: ""
+targets:
+  FlashcardMVP:
+    type: application
+    platform: iOS
+    sources:
+      - FlashcardMVP
+    info:
+      path: GeneratedInfo.plist
+      properties:
+        UILaunchScreen: {}
+        NSCameraUsageDescription: "Scan study material"
+  FlashcardMVPTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - FlashcardMVPTests
+    dependencies:
+      - target: FlashcardMVP
+schemes:
+  FlashcardMVP:
+    build:
+      targets:
+        FlashcardMVP: all
+        FlashcardMVPTests: [test]
+    test:
+      targets:
+        - FlashcardMVPTests

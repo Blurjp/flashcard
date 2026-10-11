@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct ReviewSessionView: View {
     @Environment(\.dismiss) private var dismiss

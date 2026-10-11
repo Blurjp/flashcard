@@ -245,8 +245,9 @@ final class PersistenceTests: XCTestCase {
 
         let decks = try context.fetch(fetchRequest)
 
-        XCTAssertEqual(decks.count, 2) // Alpha and Gamma contain 'a'
+        XCTAssertEqual(decks.count, 3) // Alpha, Beta and Gamma all contain 'a'
         XCTAssertEqual(decks[0].name, "Alpha")
-        XCTAssertEqual(decks[1].name, "Gamma")
+        XCTAssertEqual(decks[1].name, "Beta")
+        XCTAssertEqual(decks[2].name, "Gamma")
     }
 }

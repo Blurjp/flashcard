@@ -24,6 +24,10 @@ public class Card: NSManagedObject {
     @NSManaged public var deck: Deck?
     @NSManaged public var reviewLogs: NSSet?
 
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<Card> {
+        NSFetchRequest<Card>(entityName: "Card")
+    }
+
     // MARK: - Computed Properties
 
     public var image: UIImage? {
@@ -78,7 +82,7 @@ public class Card: NSManagedObject {
 
     // MARK: - SRS Update
 
-    public func applySchedule(result: SRSResult) {
+    func applySchedule(result: SRSResult) {
         self.easeFactor = result.newEaseFactor
         self.intervalDays = Int16(result.newIntervalDays)
         self.repetition = Int16(result.newRepetition)

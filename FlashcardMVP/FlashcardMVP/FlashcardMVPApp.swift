@@ -19,9 +19,7 @@ struct FlashcardMVPApp: App {
 
     var body: some Scene {
         WindowGroup {
-            DeckListView(context: persistenceController.viewContext)
-                .environment(\.managedObjectContext, persistenceController.viewContext)
-                .tint(theme.accentColor)
+            themedRoot
                 .onAppear {
                     if !hasCompletedOnboarding {
                         showingOnboarding = true
@@ -34,6 +32,20 @@ struct FlashcardMVPApp: App {
                             hasCompletedOnboarding = true
                         }
                 }
+        }
+    }
+
+    @ViewBuilder
+    private var themedRoot: some View {
+        let base = DeckListView(context: persistenceController.viewContext)
+            .environment(\.managedObjectContext, persistenceController.viewContext)
+            .tint(theme.accentColor)
+            .preferredColorScheme(theme.preferredColorScheme)
+
+        if let size = theme.preferredDynamicTypeSize {
+            base.dynamicTypeSize(size)
+        } else {
+            base
         }
     }
 }

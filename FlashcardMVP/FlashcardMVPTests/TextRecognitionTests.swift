@@ -77,10 +77,12 @@ final class TextRecognitionTests: XCTestCase {
         var progressUpdates: [Double] = []
 
         _ = try await TextRecognitionService.recognizeText(from: image) { progress in
-            progressUpdates.append(progress)
+            await MainActor.run {
+                progressUpdates.append(progress)
+            }
         }
 
         XCTAssertFalse(progressUpdates.isEmpty, "Should report progress")
-        XCTAssertEqual(progressUpdates.last, 1.0, accuracy: 0.01, "Final progress should be 1.0")
+        XCTAssertEqual(progressUpdates.last ?? 0, 1.0, accuracy: 0.01, "Final progress should be 1.0")
     }
 }

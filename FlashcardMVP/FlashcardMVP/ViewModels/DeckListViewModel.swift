@@ -55,9 +55,16 @@ class DeckListViewModel: ObservableObject {
     }
 
     func createScienceOlympiadDeck() {
-        let deck = Deck(context: context, name: NSLocalizedString("Science Olympiad", comment: ""))
+        createStarterDeck(for: .scienceOlympiad)
+    }
 
-        for (front, back) in AppTheme.scienceOlympiadCards {
+    /// Creates the themed starter deck for any theme that ships one.
+    func createStarterDeck(for theme: AppTheme) {
+        guard theme.hasStarterDeck else { return }
+
+        let deck = Deck(context: context, name: theme.starterDeckName)
+
+        for (front, back) in theme.starterCards {
             _ = Card(context: context, front: front, back: back, deck: deck)
         }
 

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import PhotosUI
+import CoreData
 
 struct CardEditorView: View {
     @Environment(\.dismiss) private var dismiss

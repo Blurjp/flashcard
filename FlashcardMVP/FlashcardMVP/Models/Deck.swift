@@ -16,6 +16,10 @@ public class Deck: NSManagedObject {
     @NSManaged public var updatedAt: Date
     @NSManaged public var cards: NSSet?
 
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<Deck> {
+        NSFetchRequest<Deck>(entityName: "Deck")
+    }
+
     // MARK: - Computed Properties
 
     public var cardsArray: [Card] {

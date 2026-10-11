@@ -23,25 +23,33 @@ struct SettingsView: View {
         NavigationStack {
             List {
                 Section {
-                    Picker(selection: $themeRaw) {
-                        ForEach(AppTheme.allCases) { theme in
-                            Label(theme.displayName, systemImage: theme.iconName)
-                                .tag(theme.rawValue)
+                    ForEach(ThemeCategory.allCases) { category in
+                        Picker(selection: $themeRaw) {
+                            ForEach(AppTheme.themes(in: category)) { theme in
+                                Label(theme.displayName, systemImage: theme.iconName)
+                                    .tag(theme.rawValue)
+                            }
+                        } label: {
+                            Text(category.displayName)
                         }
-                    } label: {
-                        Label(NSLocalizedString("Theme", comment: ""), systemImage: "paintbrush")
                     }
 
-                    if themeRaw == AppTheme.scienceOlympiad.rawValue {
+                    if let theme = AppTheme(rawValue: themeRaw), theme.hasStarterDeck {
                         Button {
-                            DeckListViewModel(context: viewContext).createScienceOlympiadDeck()
+                            DeckListViewModel(context: viewContext).createStarterDeck(for: theme)
                             showingStarterDeckAdded = true
                         } label: {
-                            Label(NSLocalizedString("Add Science Olympiad Starter Deck", comment: ""), systemImage: "plus.rectangle.on.folder")
+                            Label(
+                                String(
+                                    format: NSLocalizedString("Add %@ Starter Deck", comment: ""),
+                                    theme.displayName
+                                ),
+                                systemImage: "plus.rectangle.on.folder"
+                            )
                         }
                     }
                 } header: {
-                    Text(NSLocalizedString("Appearance", comment: ""))
+                    Text(NSLocalizedString("Themes", comment: ""))
                 } footer: {
                     Text(NSLocalizedString("Choose a theme for the app's accent color and starter content", comment: ""))
                 }
@@ -119,7 +127,12 @@ struct SettingsView: View {
             .alert(NSLocalizedString("Starter Deck Added", comment: ""), isPresented: $showingStarterDeckAdded) {
                 Button(NSLocalizedString("OK", comment: ""), role: .cancel) { }
             } message: {
-                Text(NSLocalizedString("A Science Olympiad deck has been added to your decks", comment: ""))
+                if let theme = AppTheme(rawValue: themeRaw) {
+                    Text(String(
+                        format: NSLocalizedString("The %@ deck has been added to your decks", comment: ""),
+                        theme.displayName
+                    ))
+                }
             }
             .alert(NSLocalizedString("Export Complete", comment: ""), isPresented: $showingExportSuccess) {
                 Button(NSLocalizedString("OK", comment: ""), role: .cancel) { }

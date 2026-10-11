@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct OnboardingView: View {
     @Environment(\.dismiss) private var dismiss

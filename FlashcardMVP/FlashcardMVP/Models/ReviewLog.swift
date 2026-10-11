@@ -15,9 +15,13 @@ public class ReviewLog: NSManagedObject {
     @NSManaged public var timestamp: Date
     @NSManaged public var card: Card?
 
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<ReviewLog> {
+        NSFetchRequest<ReviewLog>(entityName: "ReviewLog")
+    }
+
     // MARK: - Computed Properties
 
-    public var ratingEnum: Rating? {
+    var ratingEnum: Rating? {
         Rating(rawValue: Int(rating))
     }
 

@@ -68,14 +68,14 @@ class TextRecognitionService {
     /// - Returns: Extracted text
     static func recognizeText(
         from image: UIImage,
-        progressHandler: @escaping (Double) -> Void
+        progressHandler: @escaping (Double) async -> Void
     ) async throws -> String {
         // For now, Vision doesn't support progress callbacks, but we can simulate stages
-        progressHandler(0.3)
+        await progressHandler(0.3)
 
         let text = try await recognizeText(from: image)
 
-        progressHandler(1.0)
+        await progressHandler(1.0)
         return text
     }
 }

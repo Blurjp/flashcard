@@ -132,11 +132,34 @@
 "Delete" = "删除";
 
 /* Themes */
-"Appearance" = "外观";
+"Themes" = "主题";
 "Theme" = "主题";
+"Appearance" = "外观";
+"Academic Competitions" = "学术竞赛";
+"Test Prep" = "考试准备";
+"Subjects" = "学科";
 "Standard" = "标准";
 "Science Olympiad" = "科学奥林匹克";
-"Add Science Olympiad Starter Deck" = "添加科学奥林匹克入门卡组";
+"Math Olympiad" = "数学奥林匹克";
+"Spelling Bee" = "拼字比赛";
+"Geography Bee" = "地理竞赛";
+"Quiz Bowl" = "知识竞赛";
+"Debate" = "辩论";
+"SAT / ACT" = "SAT / ACT";
+"AP Exams" = "AP 考试";
+"GRE / TOEFL" = "GRE / TOEFL";
+"Medical / MCAT" = "医学 / MCAT";
+"Languages" = "语言";
+"Coding" = "编程";
+"History" = "历史";
+"Music Theory" = "乐理";
+"Midnight" = "午夜";
+"Forest" = "森林";
+"Ocean" = "海洋";
+"Sunset" = "日落";
+"Playful" = "童趣";
+"High Contrast" = "高对比度";
+"Add %@ Starter Deck" = "添加%@入门卡组";
 "Choose a theme for the app's accent color and starter content" = "选择应用的强调色和入门内容主题";
 "Starter Deck Added" = "入门卡组已添加";
-"A Science Olympiad deck has been added to your decks" = "科学奥林匹克卡组已添加到您的卡组中";
+"The %@ deck has been added to your decks" = "%@卡组已添加到您的卡组中";

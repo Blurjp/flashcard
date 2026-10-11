@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct CardGeneratorView: View {
     @Environment(\.dismiss) private var dismiss
