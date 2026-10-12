@@ -36,6 +36,7 @@
 		B06514BB8DE1CC669400736F /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AE3F274E5EF9FCA646C550 /* CameraView.swift */; };
 		C5F1BE3B5689C159F5F11121 /* TextRecognitionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EBF5C19B860E2C2C399F1D /* TextRecognitionTests.swift */; };
 		CC11F1F697134EB23507F42C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3497150D79D7A72070068B8 /* SettingsView.swift */; };
+		D734F69ED41625CEECEACC18 /* StarterDeckPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EE377AD250A3CD4CFC8415 /* StarterDeckPickerView.swift */; };
 		E0CA29C5C1CAD51417B3A0E3 /* FlashcardMVP.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A1DF37FEDA3E11BC986C7E8E /* FlashcardMVP.xcdatamodeld */; };
 		E218EA0D7FC668CB3839E53B /* AIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F77AEE050012F742E21DB7 /* AIServiceTests.swift */; };
 		E2FAE71329D2A68F0EEAE1B3 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FF64E836A2D9D16BDC40F4 /* AppTheme.swift */; };
@@ -65,6 +66,7 @@
 		00F17DB13E50797EF834AA17 /* CardGeneratorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGeneratorView.swift; sourceTree = "<group>"; };
 		01EBF5C19B860E2C2C399F1D /* TextRecognitionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextRecognitionTests.swift; sourceTree = "<group>"; };
 		05935124240410AA75B9E5AA /* CardEditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardEditorViewModel.swift; sourceTree = "<group>"; };
+		08EE377AD250A3CD4CFC8415 /* StarterDeckPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarterDeckPickerView.swift; sourceTree = "<group>"; };
 		1D7E01F5775D37AA7AD87C8A /* DeckListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckListView.swift; sourceTree = "<group>"; };
 		21D03770F1143157D136D344 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		29AE3F274E5EF9FCA646C550 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 				BF8702DCB03792093FB7B2A2 /* OnboardingView.swift */,
 				D5EEB3F97945A7612D107E76 /* ReviewSessionView.swift */,
 				D3497150D79D7A72070068B8 /* SettingsView.swift */,
+				08EE377AD250A3CD4CFC8415 /* StarterDeckPickerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -405,6 +408,7 @@
 				82E37A98F23F141BD0E89FEF /* ReviewSessionViewModel.swift in Sources */,
 				6C1416A1C7F8900173FA06BE /* Scheduler.swift in Sources */,
 				CC11F1F697134EB23507F42C /* SettingsView.swift in Sources */,
+				D734F69ED41625CEECEACC18 /* StarterDeckPickerView.swift in Sources */,
 				97E39240954CB41AF43748C3 /* TextRecognitionService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

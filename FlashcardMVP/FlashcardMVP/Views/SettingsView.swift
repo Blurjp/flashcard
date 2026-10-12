@@ -17,7 +17,6 @@ struct SettingsView: View {
     @State private var showingExportSuccess = false
     @State private var apiKey: String = AIServiceConfiguration.shared.apiKey ?? ""
     @AppStorage(AppTheme.storageKey) private var themeRaw = AppTheme.standard.rawValue
-    @State private var showingStarterDeckAdded = false
 
     var body: some View {
         NavigationStack {
@@ -50,19 +49,10 @@ struct SettingsView: View {
                         }
                     }
 
-                    if let theme = AppTheme(rawValue: themeRaw), theme.hasStarterDeck {
-                        Button {
-                            DeckListViewModel(context: viewContext).createStarterDeck(for: theme)
-                            showingStarterDeckAdded = true
-                        } label: {
-                            Label(
-                                String(
-                                    format: NSLocalizedString("Add %@ Starter Deck", comment: ""),
-                                    theme.displayName
-                                ),
-                                systemImage: "plus.rectangle.on.folder"
-                            )
-                        }
+                    NavigationLink {
+                        StarterDeckPickerView()
+                    } label: {
+                        Label(NSLocalizedString("Starter Decks", comment: ""), systemImage: "sparkles")
                     }
                 } header: {
                     Text(NSLocalizedString("Themes", comment: ""))
@@ -138,16 +128,6 @@ struct SettingsView: View {
             .sheet(isPresented: $showingExportSheet) {
                 if let url = exportedDataURL {
                     ShareSheet(activityItems: [url])
-                }
-            }
-            .alert(NSLocalizedString("Starter Deck Added", comment: ""), isPresented: $showingStarterDeckAdded) {
-                Button(NSLocalizedString("OK", comment: ""), role: .cancel) { }
-            } message: {
-                if let theme = AppTheme(rawValue: themeRaw) {
-                    Text(String(
-                        format: NSLocalizedString("The %@ deck has been added to your decks", comment: ""),
-                        theme.displayName
-                    ))
                 }
             }
             .alert(NSLocalizedString("Export Complete", comment: ""), isPresented: $showingExportSuccess) {

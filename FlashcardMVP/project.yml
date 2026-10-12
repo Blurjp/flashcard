@@ -27,7 +27,7 @@ targets:
       properties:
         CFBundleDisplayName: Flashcard
         CFBundleShortVersionString: "1.0"
-        CFBundleVersion: "6"
+        CFBundleVersion: "7"
         UILaunchScreen: {}
         ITSAppUsesNonExemptEncryption: false
         NSCameraUsageDescription: "Flashcard uses the camera to photograph study material and turn it into flashcards."

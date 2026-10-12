@@ -18,6 +18,7 @@ struct DeckListView: View {
     @StateObject private var viewModel: DeckListViewModel
     @State private var showingAddDeck = false
     @State private var showingSettings = false
+    @State private var showingStarterPicker = false
     @State private var newDeckName = ""
 
     init(context: NSManagedObjectContext = PersistenceController.shared.viewContext) {
@@ -56,6 +57,9 @@ struct DeckListView: View {
             .sheet(isPresented: $showingSettings) {
                 SettingsView()
             }
+            .sheet(isPresented: $showingStarterPicker) {
+                StarterDeckPickerView()
+            }
         }
     }
 
@@ -89,7 +93,16 @@ struct DeckListView: View {
             }
             .buttonStyle(.borderedProminent)
             .clipShape(Capsule())
-            .padding(.top)
+
+            Button {
+                showingStarterPicker = true
+            } label: {
+                Label(NSLocalizedString("Browse Starter Decks", comment: ""), systemImage: "sparkles")
+                    .font(.headline)
+            }
+            .buttonStyle(.bordered)
+            .clipShape(Capsule())
+            .padding(.top, -8)
         }
         .padding()
     }
@@ -119,6 +132,19 @@ struct DeckListView: View {
                         .textInputAutocapitalization(.words)
                 } footer: {
                     Text(NSLocalizedString("Give your deck a memorable name", comment: ""))
+                }
+
+                Section {
+                    Button {
+                        showingAddDeck = false
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                            showingStarterPicker = true
+                        }
+                    } label: {
+                        Label(NSLocalizedString("Browse Starter Decks", comment: ""), systemImage: "sparkles")
+                    }
+                } footer: {
+                    Text(NSLocalizedString("Add a ready-made deck: 46 topics from Math Olympiad to Korean", comment: ""))
                 }
             }
             .navigationTitle(NSLocalizedString("New Deck", comment: ""))
