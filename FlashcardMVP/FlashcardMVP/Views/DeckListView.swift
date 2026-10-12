@@ -148,31 +148,48 @@ struct DeckListView: View {
     }
 }
 
+// MARK: - Deck Icon Tile
+
+struct DeckIconTile: View {
+    let deck: Deck
+    var size: CGFloat = 46
+
+    private var theme: AppTheme? {
+        AppTheme.theme(forDeckName: deck.name)
+    }
+
+    private var tileGradient: LinearGradient {
+        let colors = theme?.category.gradientColors
+            ?? [Color.accentColor.opacity(0.75), Color.accentColor]
+        return LinearGradient(colors: colors, startPoint: .topLeading, endPoint: .bottomTrailing)
+    }
+
+    var body: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: size * 0.28, style: .continuous)
+                .fill(tileGradient)
+            if let theme {
+                Image(systemName: theme.iconName)
+                    .font(.system(size: size * 0.43, weight: .semibold))
+                    .foregroundColor(.white)
+            } else {
+                Text(String(deck.name.prefix(1)).uppercased())
+                    .font(.system(size: size * 0.36, weight: .bold, design: .rounded))
+                    .foregroundColor(.white)
+            }
+        }
+        .frame(width: size, height: size)
+    }
+}
+
 // MARK: - Deck Row View
 
 struct DeckRowView: View {
     @ObservedObject var deck: Deck
 
-    private var initial: String {
-        String(deck.name.prefix(1)).uppercased()
-    }
-
     var body: some View {
         HStack(spacing: 14) {
-            ZStack {
-                RoundedRectangle(cornerRadius: 13, style: .continuous)
-                    .fill(
-                        LinearGradient(
-                            colors: [.accentColor.opacity(0.75), .accentColor],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
-                Text(initial)
-                    .font(.system(.headline, design: .rounded).weight(.bold))
-                    .foregroundColor(.white)
-            }
-            .frame(width: 46, height: 46)
+            DeckIconTile(deck: deck)
 
             VStack(alignment: .leading, spacing: 3) {
                 Text(deck.name)

@@ -30,7 +30,23 @@ struct SettingsView: View {
                                     .tag(theme.rawValue)
                             }
                         } label: {
-                            Text(category.displayName)
+                            HStack(spacing: 10) {
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 6, style: .continuous)
+                                        .fill(
+                                            LinearGradient(
+                                                colors: category.gradientColors,
+                                                startPoint: .topLeading,
+                                                endPoint: .bottomTrailing
+                                            )
+                                        )
+                                        .frame(width: 26, height: 26)
+                                    Image(systemName: category.iconName)
+                                        .font(.system(size: 13, weight: .semibold))
+                                        .foregroundColor(.white)
+                                }
+                                Text(category.displayName)
+                            }
                         }
                     }
 

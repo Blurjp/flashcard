@@ -25,6 +25,29 @@ enum ThemeCategory: String, CaseIterable, Identifiable {
         case .appearance: return NSLocalizedString("Appearance", comment: "")
         }
     }
+
+    var iconName: String {
+        switch self {
+        case .academicCompetitions: return "trophy"
+        case .testPrep: return "list.clipboard"
+        case .subjects: return "book.pages"
+        case .appearance: return "paintpalette"
+        }
+    }
+
+    /// A distinctive gradient per category, used for icon tiles and headers.
+    var gradientColors: [Color] {
+        switch self {
+        case .academicCompetitions:
+            return [Color(red: 1.00, green: 0.75, blue: 0.15), Color(red: 0.92, green: 0.45, blue: 0.05)]
+        case .testPrep:
+            return [Color(red: 0.30, green: 0.45, blue: 0.95), Color(red: 0.20, green: 0.25, blue: 0.75)]
+        case .subjects:
+            return [Color(red: 0.10, green: 0.70, blue: 0.55), Color(red: 0.05, green: 0.45, blue: 0.40)]
+        case .appearance:
+            return [Color(red: 0.75, green: 0.35, blue: 0.85), Color(red: 0.50, green: 0.20, blue: 0.70)]
+        }
+    }
 }
 
 // MARK: - App Theme
@@ -124,6 +147,11 @@ enum AppTheme: String, CaseIterable, Identifiable {
     /// All themes that belong to the given category, in display order.
     static func themes(in category: ThemeCategory) -> [AppTheme] {
         allCases.filter { $0.category == category }
+    }
+
+    /// The theme whose starter deck matches the given deck name, if any.
+    static func theme(forDeckName name: String) -> AppTheme? {
+        allCases.first { $0.hasStarterDeck && $0.starterDeckName == name }
     }
 
     var displayName: String {

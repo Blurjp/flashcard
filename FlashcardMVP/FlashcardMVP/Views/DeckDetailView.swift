@@ -77,10 +77,14 @@ struct DeckDetailView: View {
     private var cardsList: some View {
         List {
             Section {
-                HStack(spacing: 8) {
-                    statChip(icon: "rectangle.stack", text: "\(viewModel.totalCards) total", tint: .secondary)
-                    if viewModel.dueCardsCount > 0 {
-                        statChip(icon: "clock.fill", text: "\(viewModel.dueCardsCount) due", tint: .accentColor)
+                HStack(spacing: 12) {
+                    DeckIconTile(deck: deck)
+
+                    HStack(spacing: 8) {
+                        statChip(icon: "rectangle.stack", text: "\(viewModel.totalCards) total", tint: .secondary)
+                        if viewModel.dueCardsCount > 0 {
+                            statChip(icon: "clock.fill", text: "\(viewModel.dueCardsCount) due", tint: .accentColor)
+                        }
                     }
                 }
                 .listRowSeparator(.hidden)
