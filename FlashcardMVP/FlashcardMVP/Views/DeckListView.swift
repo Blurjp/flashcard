@@ -63,13 +63,17 @@ struct DeckListView: View {
 
     private var emptyStateView: some View {
         VStack(spacing: 20) {
-            Image(systemName: "square.stack.3d.up.slash")
-                .font(.system(size: 64))
-                .foregroundColor(.secondary)
+            ZStack {
+                Circle()
+                    .fill(Color.accentColor.opacity(0.08))
+                    .frame(width: 132, height: 132)
+                Image(systemName: "square.stack.3d.up.slash")
+                    .font(.system(size: 56))
+                    .foregroundColor(.accentColor)
+            }
 
             Text(NSLocalizedString("No Decks Yet", comment: ""))
-                .font(.title2)
-                .fontWeight(.semibold)
+                .font(.system(.title2, design: .rounded).weight(.semibold))
 
             Text(NSLocalizedString("Create your first deck to start learning", comment: ""))
                 .font(.body)
@@ -84,6 +88,7 @@ struct DeckListView: View {
                     .font(.headline)
             }
             .buttonStyle(.borderedProminent)
+            .clipShape(Capsule())
             .padding(.top)
         }
         .padding()
@@ -98,9 +103,12 @@ struct DeckListView: View {
             }
             .onDelete(perform: deleteDeck)
             .listRowSeparator(.hidden)
-            .listRowInsets(EdgeInsets(top: 6, leading: 16, bottom: 6, trailing: 16))
+            .listRowBackground(Color.clear)
+            .listRowInsets(EdgeInsets(top: 5, leading: 16, bottom: 5, trailing: 16))
         }
         .listStyle(.insetGrouped)
+        .scrollContentBackground(.hidden)
+        .background(Color(.systemGroupedBackground))
     }
 
     private var addDeckSheet: some View {
@@ -193,7 +201,7 @@ struct DeckRowView: View {
 
             VStack(alignment: .leading, spacing: 3) {
                 Text(deck.name)
-                    .font(.headline)
+                    .font(.system(.headline, design: .rounded))
 
                 Text("\(deck.totalCardsCount) cards")
                     .font(.subheadline)
@@ -208,22 +216,28 @@ struct DeckRowView: View {
                         .fill(Color.accentColor)
                         .frame(width: 6, height: 6)
                     Text("\(deck.dueCardsCount) \(NSLocalizedString("Due today", comment: ""))")
-                        .font(.caption.weight(.semibold))
+                        .font(.caption.weight(.semibold).monospacedDigit())
                         .foregroundColor(.accentColor)
                 }
                 .padding(.horizontal, 10)
                 .padding(.vertical, 6)
                 .background(Color.accentColor.opacity(0.12), in: Capsule())
             } else {
-                Text("✓")
+                Image(systemName: "checkmark")
                     .font(.caption.weight(.bold))
                     .foregroundColor(.green)
-                    .padding(.horizontal, 10)
+                    .padding(.horizontal, 9)
                     .padding(.vertical, 6)
                     .background(Color.green.opacity(0.12), in: Capsule())
             }
         }
-        .padding(.vertical, 8)
+        .padding(14)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(
+            RoundedRectangle(cornerRadius: 18, style: .continuous)
+                .fill(Color(.systemBackground))
+                .shadow(color: .black.opacity(0.06), radius: 10, y: 4)
+        )
         .contentShape(Rectangle())
     }
 }

@@ -100,9 +100,12 @@ struct DeckDetailView: View {
             }
             .onDelete(perform: viewModel.deleteCards)
             .listRowSeparator(.hidden)
-            .listRowInsets(EdgeInsets(top: 6, leading: 16, bottom: 6, trailing: 16))
+            .listRowBackground(Color.clear)
+            .listRowInsets(EdgeInsets(top: 5, leading: 16, bottom: 5, trailing: 16))
         }
         .listStyle(.insetGrouped)
+        .scrollContentBackground(.hidden)
+        .background(Color(.systemGroupedBackground))
     }
 
     private func statChip(icon: String, text: String, tint: Color) -> some View {
@@ -192,7 +195,7 @@ struct CardRowView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             Text(card.front)
-                .font(.headline)
+                .font(.system(.headline, design: .rounded))
                 .lineLimit(2)
 
             Text(card.back)
@@ -216,7 +219,13 @@ struct CardRowView: View {
                 duePill
             }
         }
-        .padding(.vertical, 8)
+        .padding(14)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(
+            RoundedRectangle(cornerRadius: 18, style: .continuous)
+                .fill(Color(.systemBackground))
+                .shadow(color: .black.opacity(0.05), radius: 8, y: 3)
+        )
     }
 
     private var duePill: some View {

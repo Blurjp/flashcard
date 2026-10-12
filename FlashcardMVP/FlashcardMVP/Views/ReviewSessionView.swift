@@ -73,7 +73,7 @@ struct ReviewSessionView: View {
             .padding(.horizontal)
 
             Text(viewModel.progressText)
-                .font(.caption)
+                .font(.caption.weight(.medium).monospacedDigit())
                 .foregroundColor(.secondary)
                 .padding(.top, 8)
 
@@ -117,7 +117,11 @@ struct ReviewSessionView: View {
             .padding(.horizontal)
             .padding(.bottom, 12)
         }
-        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 20, style: .continuous))
+        .background(
+            .ultraThinMaterial,
+            in: RoundedRectangle(cornerRadius: 20, style: .continuous)
+        )
+        .shadow(color: .black.opacity(0.06), radius: 14, y: 6)
         .transition(.move(edge: .bottom).combined(with: .opacity))
     }
 
@@ -198,13 +202,17 @@ struct ReviewSessionView: View {
 
     private var emptyStateView: some View {
         VStack(spacing: 20) {
-            Image(systemName: "checkmark.circle")
-                .font(.system(size: 64))
-                .foregroundColor(.green)
+            ZStack {
+                Circle()
+                    .fill(Color.green.opacity(0.10))
+                    .frame(width: 128, height: 128)
+                Image(systemName: "checkmark.circle")
+                    .font(.system(size: 56))
+                    .foregroundColor(.green)
+            }
 
             Text(NSLocalizedString("All Caught Up!", comment: ""))
-                .font(.title2)
-                .fontWeight(.semibold)
+                .font(.system(.title2, design: .rounded).weight(.semibold))
 
             Text(NSLocalizedString("No cards are due for review right now", comment: ""))
                 .font(.body)
@@ -303,6 +311,10 @@ struct CardContentView: View {
         .frame(maxWidth: .infinity)
         .background(Color(.secondarySystemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
+        .overlay(
+            RoundedRectangle(cornerRadius: 24, style: .continuous)
+                .strokeBorder(Color.primary.opacity(0.04), lineWidth: 1)
+        )
         .shadow(color: .black.opacity(0.08), radius: 16, y: 8)
     }
 }
@@ -350,11 +362,11 @@ struct StatRow: View {
     var body: some View {
         HStack {
             Text(title)
-                .font(.body)
+                .font(.subheadline)
+                .foregroundColor(.secondary)
             Spacer()
             Text(value)
-                .font(.body)
-                .fontWeight(.semibold)
+                .font(.system(.subheadline, design: .rounded).weight(.semibold))
         }
     }
 }
