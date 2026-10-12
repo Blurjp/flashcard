@@ -37,6 +37,9 @@ targets:
     platform: iOS
     sources:
       - FlashcardMVPTests
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: "YES"
     dependencies:
       - target: FlashcardMVP
   FlashcardMVPUITests:
