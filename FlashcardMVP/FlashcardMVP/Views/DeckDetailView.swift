@@ -77,9 +77,14 @@ struct DeckDetailView: View {
     private var cardsList: some View {
         List {
             Section {
-                Text("\(viewModel.totalCards) total • \(viewModel.dueCardsCount) due")
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
+                HStack(spacing: 8) {
+                    statChip(icon: "rectangle.stack", text: "\(viewModel.totalCards) total", tint: .secondary)
+                    if viewModel.dueCardsCount > 0 {
+                        statChip(icon: "clock.fill", text: "\(viewModel.dueCardsCount) due", tint: .accentColor)
+                    }
+                }
+                .listRowSeparator(.hidden)
+                .listRowInsets(EdgeInsets())
             }
 
             ForEach(viewModel.filteredCards) { card in
@@ -90,8 +95,23 @@ struct DeckDetailView: View {
                     }
             }
             .onDelete(perform: viewModel.deleteCards)
+            .listRowSeparator(.hidden)
+            .listRowInsets(EdgeInsets(top: 6, leading: 16, bottom: 6, trailing: 16))
         }
         .listStyle(.insetGrouped)
+    }
+
+    private func statChip(icon: String, text: String, tint: Color) -> some View {
+        HStack(spacing: 5) {
+            Image(systemName: icon)
+                .font(.caption2)
+            Text(text)
+                .font(.caption.weight(.semibold))
+        }
+        .foregroundColor(tint)
+        .padding(.horizontal, 10)
+        .padding(.vertical, 6)
+        .background(tint.opacity(0.10), in: Capsule())
     }
 
     private var emptyStateView: some View {
@@ -143,11 +163,17 @@ struct DeckDetailView: View {
                 Text("(\(viewModel.dueCardsCount))")
             }
             .frame(maxWidth: .infinity)
-            .padding()
-            .background(Color.accentColor)
+            .padding(.vertical, 16)
+            .background(
+                LinearGradient(
+                    colors: [.accentColor, .accentColor.opacity(0.75)],
+                    startPoint: .leading,
+                    endPoint: .trailing
+                )
+            )
             .foregroundColor(.white)
-            .cornerRadius(12)
-            .shadow(radius: 4)
+            .clipShape(Capsule())
+            .shadow(color: .accentColor.opacity(0.35), radius: 10, y: 5)
         }
         .padding()
         .transition(.move(edge: .bottom).combined(with: .opacity))
@@ -160,49 +186,51 @@ struct CardRowView: View {
     @ObservedObject var card: Card
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            HStack {
-                Text(card.front)
-                    .font(.headline)
-                    .lineLimit(2)
-
-                Spacer()
-
-                if card.isDue {
-                    Image(systemName: "clock.fill")
-                        .foregroundColor(.accentColor)
-                        .font(.caption)
-                }
-            }
+        VStack(alignment: .leading, spacing: 6) {
+            Text(card.front)
+                .font(.headline)
+                .lineLimit(2)
 
             Text(card.back)
                 .font(.subheadline)
                 .foregroundColor(.secondary)
                 .lineLimit(2)
 
-            if card.image != nil {
-                HStack {
-                    Image(systemName: "photo")
-                        .font(.caption2)
-                    Text(NSLocalizedString("Has image", comment: ""))
-                        .font(.caption2)
+            HStack(spacing: 8) {
+                if card.image != nil {
+                    HStack(spacing: 3) {
+                        Image(systemName: "photo")
+                            .font(.caption2)
+                        Text(NSLocalizedString("Has image", comment: ""))
+                            .font(.caption2)
+                    }
+                    .foregroundColor(.secondary)
                 }
-                .foregroundColor(.secondary)
-            }
-
-            HStack {
-                Text(formatDueDate(card.dueDate))
-                    .font(.caption)
-                    .foregroundColor(card.isDue ? .accentColor : .secondary)
 
                 Spacer()
 
-                Text("Rep: \(card.repetition)")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
+                duePill
             }
         }
-        .padding(.vertical, 4)
+        .padding(.vertical, 8)
+    }
+
+    private var duePill: some View {
+        Text(formatDueDate(card.dueDate))
+            .font(.caption2.weight(.semibold))
+            .padding(.horizontal, 8)
+            .padding(.vertical, 4)
+            .background(pillColor.opacity(0.12), in: Capsule())
+            .foregroundColor(pillColor)
+    }
+
+    private var pillColor: Color {
+        let now = Date()
+        if card.dueDate < now {
+            return card.dueDate < Calendar.current.date(byAdding: .day, value: -1, to: now) ?? now
+                ? .red : .accentColor
+        }
+        return .secondary
     }
 
     private func formatDueDate(_ date: Date) -> String {

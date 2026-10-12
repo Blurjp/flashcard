@@ -97,7 +97,10 @@ struct DeckListView: View {
                 }
             }
             .onDelete(perform: deleteDeck)
+            .listRowSeparator(.hidden)
+            .listRowInsets(EdgeInsets(top: 6, leading: 16, bottom: 6, trailing: 16))
         }
+        .listStyle(.insetGrouped)
     }
 
     private var addDeckSheet: some View {
@@ -150,9 +153,28 @@ struct DeckListView: View {
 struct DeckRowView: View {
     @ObservedObject var deck: Deck
 
+    private var initial: String {
+        String(deck.name.prefix(1)).uppercased()
+    }
+
     var body: some View {
-        HStack {
-            VStack(alignment: .leading, spacing: 4) {
+        HStack(spacing: 14) {
+            ZStack {
+                RoundedRectangle(cornerRadius: 13, style: .continuous)
+                    .fill(
+                        LinearGradient(
+                            colors: [.accentColor.opacity(0.75), .accentColor],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
+                    )
+                Text(initial)
+                    .font(.system(.headline, design: .rounded).weight(.bold))
+                    .foregroundColor(.white)
+            }
+            .frame(width: 46, height: 46)
+
+            VStack(alignment: .leading, spacing: 3) {
                 Text(deck.name)
                     .font(.headline)
 
@@ -164,19 +186,28 @@ struct DeckRowView: View {
             Spacer()
 
             if deck.dueCardsCount > 0 {
-                VStack(alignment: .trailing, spacing: 4) {
-                    Text("\(deck.dueCardsCount)")
-                        .font(.title2)
-                        .fontWeight(.bold)
+                HStack(spacing: 6) {
+                    Circle()
+                        .fill(Color.accentColor)
+                        .frame(width: 6, height: 6)
+                    Text("\(deck.dueCardsCount) \(NSLocalizedString("Due today", comment: ""))")
+                        .font(.caption.weight(.semibold))
                         .foregroundColor(.accentColor)
-
-                    Text(NSLocalizedString("Due today", comment: ""))
-                        .font(.caption)
-                        .foregroundColor(.secondary)
                 }
+                .padding(.horizontal, 10)
+                .padding(.vertical, 6)
+                .background(Color.accentColor.opacity(0.12), in: Capsule())
+            } else {
+                Text("✓")
+                    .font(.caption.weight(.bold))
+                    .foregroundColor(.green)
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 6)
+                    .background(Color.green.opacity(0.12), in: Capsule())
             }
         }
-        .padding(.vertical, 4)
+        .padding(.vertical, 8)
+        .contentShape(Rectangle())
     }
 }
 

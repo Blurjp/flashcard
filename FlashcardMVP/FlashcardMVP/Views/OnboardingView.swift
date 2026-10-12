@@ -52,10 +52,17 @@ struct OnboardingView: View {
                     Text(NSLocalizedString("Get Started", comment: ""))
                         .fontWeight(.semibold)
                         .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(Color.accentColor)
+                        .padding(.vertical, 16)
+                        .background(
+                            LinearGradient(
+                                colors: [.accentColor, .accentColor.opacity(0.75)],
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        )
                         .foregroundColor(.white)
-                        .cornerRadius(12)
+                        .clipShape(Capsule())
+                        .shadow(color: .accentColor.opacity(0.35), radius: 10, y: 5)
                 }
                 .padding(.horizontal)
 
@@ -68,6 +75,14 @@ struct OnboardingView: View {
             }
             .padding(.bottom)
         }
+        .background(
+            LinearGradient(
+                colors: [Color.accentColor.opacity(0.06), Color(.systemBackground)],
+                startPoint: .top,
+                endPoint: .bottom
+            )
+            .ignoresSafeArea()
+        )
     }
 
     private func getStarted() {
@@ -87,9 +102,15 @@ struct OnboardingPageView: View {
         VStack(spacing: 24) {
             Spacer()
 
-            Image(systemName: systemImage)
-                .font(.system(size: 80))
-                .foregroundColor(.accentColor)
+            ZStack {
+                Circle()
+                    .fill(Color.accentColor.opacity(0.10))
+                    .frame(width: 150, height: 150)
+
+                Image(systemName: systemImage)
+                    .font(.system(size: 64))
+                    .foregroundColor(.accentColor)
+            }
 
             VStack(spacing: 12) {
                 Text(title)

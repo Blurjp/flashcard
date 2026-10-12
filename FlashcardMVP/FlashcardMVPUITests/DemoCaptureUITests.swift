@@ -36,7 +36,7 @@ final class DemoCaptureUITests: XCTestCase {
         snap("01-deck-list")
 
         // 2. Open a themed deck
-        let deck = app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", "Science Olympiad")).firstMatch
+        let deck = app.buttons.matching(NSPredicate(format: "label CONTAINS %@", "Science Olympiad")).firstMatch
         XCTAssertTrue(deck.waitForExistence(timeout: 5))
         deck.tap()
         waitStable(2)
